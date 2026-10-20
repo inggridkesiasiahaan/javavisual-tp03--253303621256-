@@ -1,7 +1,8 @@
-
 package com.unpri.charactermanager.model;
 
 import com.unpri.charactermanager.manager.CharacterManager;
+import view.MainWindow;   // <-- Import package view untuk GUI
+import javax.swing.*;      // <-- Import library Swing
 import java.util.List;
 
 public class Main {
@@ -62,6 +63,12 @@ public class Main {
         System.out.println("Tambah Sylvanas: " + manager.addCharacter(c3));
         System.out.println("Tambah Khadgar: " + manager.addCharacter(c4));
 
+        // Tambah karakter ke-5 agar memenuhi minimal 5 data untuk GUI
+        Character c5 = new Character(
+            "Gandalf", CharacterType.MAGE, 5, 150, 35, 200
+        );
+        System.out.println("Tambah Gandalf: " + manager.addCharacter(c5));
+
         Character duplicate = new Character(
             "Arthas", CharacterType.WARRIOR, 2, 150, 28, 30
         );
@@ -110,31 +117,6 @@ public class Main {
 
         System.out.println("Jumlah dalam salinan: " + salinan.size());
 
-        manager.addCharacter(
-            new Character(
-                "Gandalf", CharacterType.MAGE, 1, 95, 30, 80
-            )
-        );
-
-        System.out.println(
-            "Jumlah dalam salinan setelah manager berubah: "
-            + salinan.size()
-        );
-
-        System.out.println(
-            "Jumlah karakter dalam manager: "
-            + manager.getTotalCharacters()
-        );
-
-        try {
-            salinan.clear();
-            System.out.println("Daftar berhasil diubah.");
-        } catch (UnsupportedOperationException e) {
-            System.out.println(
-                "Daftar salinan tidak dapat diubah langsung."
-            );
-        }
-
         // 7. Pengujian removeCharacter
         System.out.println("\n=== UJI REMOVE ===");
 
@@ -146,22 +128,7 @@ public class Main {
             "Total setelah hapus: " + manager.getTotalCharacters()
         );
 
-        System.out.println(
-            "Hapus karakter tidak ditemukan: "
-            + manager.removeCharacter("TidakAda")
-        );
-
-        // 8. Pengujian rata-rata pada daftar kosong
-        System.out.println("\n=== UJI RATA-RATA LIST KOSONG ===");
-
-        CharacterManager managerKosong = new CharacterManager();
-
-        System.out.println(
-            "Rata-rata level list kosong: "
-            + managerKosong.getAverageLevel()
-        );
-
-        // 9. Pengujian equals
+        // 8. Pengujian equals
         System.out.println("\n=== UJI EQUALS ===");
 
         Character a = new Character(
@@ -175,23 +142,7 @@ public class Main {
         System.out.println("a.equals(b): " + a.equals(b));
         System.out.println("a == b: " + (a == b));
 
-        Character eqA = new Character(
-            "Aragorn", CharacterType.WARRIOR, 1, 120, 20, 30
-        );
-
-        Character eqB = new Character(
-            "Aragorn", CharacterType.MAGE, 5, 80, 25, 100
-        );
-
-        System.out.println(
-            "Nama sama persis, equals: " + eqA.equals(eqB)
-        );
-
-        System.out.println(
-            "Nama sama persis, ==: " + (eqA == eqB)
-        );
-
-        // 10. Pengujian fitur findStrongest
+        // 9. Pengujian fitur findStrongest
         System.out.println("\n=== FITUR FIND STRONGEST ===");
 
         Character strongest = manager.findStrongest();
@@ -200,7 +151,6 @@ public class Main {
             System.out.println(
                 "Karakter terkuat: " + strongest.getName()
             );
-
             System.out.println(
                 "Attack tertinggi: " + strongest.getAttackPower()
             );
@@ -208,55 +158,14 @@ public class Main {
             System.out.println("Belum ada karakter.");
         }
 
-        // 11. Pengujian referensi objek
-        System.out.println("\n=== UJI REFERENSI OBJEK ===");
+        System.out.println("\n=== PROGRAM CONSOLE SELESAI, MEMBUKA JENDELA GUI ===");
 
-        Character refA = new Character();
-        Character refB = refA;
-
-        refB.setLevel(8);
-
-        System.out.println("Level refA: " + refA.getLevel());
-        System.out.println("Level refB: " + refB.getLevel());
-        System.out.println("refA == refB: " + (refA == refB));
-
-        // 12. Pengujian objek independen
-        System.out.println("\n=== UJI OBJEK INDEPENDEN ===");
-
-        Character objC = new Character();
-        Character objD = new Character();
-
-        objD.setLevel(8);
-
-        System.out.println("Level objC: " + objC.getLevel());
-        System.out.println("Level objD: " + objD.getLevel());
-        System.out.println("objC == objD: " + (objC == objD));
-
-        // 13. Pengujian tipe data primitif
-        System.out.println("\n=== UJI TIPE PRIMITIF ===");
-
-        int x = 5;
-        int y = x;
-        y = 10;
-
-        System.out.println("Nilai x: " + x);
-        System.out.println("Nilai y: " + y);
-
-        // 14. Pengujian static counter
-        System.out.println("\n=== UJI STATIC COUNTER ===");
-
-        System.out.println(
-            "Jumlah objek sebelum: "
-            + Character.getTotalCharacterCreated()
-        );
-
-       new Character();
-
-    System.out.println(
-    "Jumlah objek sesudah: "
-    + Character.getTotalCharacterCreated()
-);
-
-        System.out.println("\n=== PROGRAM SELESAI ===");
+        // =========================================================
+        // BAGIAN UTAMA TP8: Membuka Jendela GUI via Event Dispatch Thread
+        // =========================================================
+        SwingUtilities.invokeLater(() -> {
+            MainWindow window = new MainWindow(manager.getAllCharacters());
+            window.setVisible(true);
+        });
     }
 }

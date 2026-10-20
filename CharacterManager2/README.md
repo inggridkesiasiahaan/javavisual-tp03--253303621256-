@@ -89,3 +89,33 @@ Dokumentasi analisis TP5 mencakup penjelasan tentang referensi objek, perbedaan 
 
 [https://docs.google.com/document/d/13hSDwnIG8a7Ov0VOPC_eHdDZhg9jHwwUnOaimDDaGIk/edit?usp=sharing]
 
+
+# Character Manager - Sprint #2 (TP5)
+
+Repositori ini dikembangkan untuk memenuhi tugas praktikum [TP8: Method & Manipulasi Object (Praktik)](url:id=9).
+
+## 📋 Daftar Isi
+1. [Screenshot Output CRUD & Eksperimen Reference](#1-screenshot-output-crud--eksperimen-reference)
+2. [Penjelasan Fitur Bagian C (Fitur Mandiri)](#2-penjelasan-fitur-bagian-c-fitur-mandiri)
+3. [Analisis Reference & Rancangan (Google Docs)](#3-analisis-reference--rancangan-google-docs)
+
+---
+
+## 1. Screenshot Output CRUD & Eksperimen Reference
+
+Berikut adalah hasil tangkapan layar (<OUTPUT CRUD+ reference-1.png>) dari terminal saat program pengujian dijalankan:
+
+screenshot hasil jendela GUI  (<output Jendela GUI-1.png>)
+
+## 2. Penjelasan Fitur Bagian C Fitur Mandiri
+
+Penjelasan Fitur Bagian C (Fitur Mandiri)
+Pada bagian ini, ditambahkan satu method analitik rancangan sendiri ke dalam kelas CharacterManager:
+
+Nama Method: findStrongest()
+
+Rasional & Cara Kerja:
+Method ini berfungsi untuk melakukan iterasi ke seluruh elemen di dalam list guna mencari dan mengembalikan objek Character yang memiliki nilai AttackPower paling tinggi. Method ini tetap mematuhi prinsip Encapsulation karena tidak mengekspos variabel ArrayList asli ke luar kelas, melainkan hanya mengembalikan satu objek tunggal karakter terkuat.
+
+### link google docs ( https://docs.google.com/document/d/1M-v6doGdfqnQ0NEMCx8Ey3ILHAQBNoUcCoRtws6SAnQ/edit?usp=sharing)
+
